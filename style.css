@@ -1,0 +1,23 @@
+.toast-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .toast-message {
+    margin-left: 10px;
+  }
+  
+  .toast-success {
+    background-color: #4caf50 !important;
+  }
+  
+  .toast-error {
+    background-color: #f44336 !important;
+  }
+  
+  .toast svg {
+    stroke-width: 2;
+    width: 24px;
+    height: 24px;
+  }
+  

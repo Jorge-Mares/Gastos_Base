@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar bg-primary">
+        <div class="container-fluid">
+        
+        
+           <h1 class="m-auto text-white">CONTROL DE GASTOS</h1>
+      
+         
+        </div>
+      </nav>
+      
+      <div class="container-fluid" >
+     
+        <div class="card text-center w-50 m-auto mt-3 shadow p-2 " id="divpresupuesto">
+            <div class="card-header">
+         <h2 class="mt-2">PRESUPUESTO INICIAL</h2>
+    
+         <input type="number" class="form-control w-75 m-auto my-3" max="1000000" min="0" value="0" id="presupuesto">
+         <button class="btn btn-primary w-75 m-auto my-3" id="btnPre" >INICIAR</button>
+       
+            </div>
+            </div>
+       
+           <div class="d-none"id="divgastos">
+            <div class="card text-center w-50 m-auto mt-3 shadow p-2 ">
+                <div class="card-header" >
+                   
+             <h2 class="mt-2">GASTOS</h2>
+           <div class="row">
+            <div class="col"> 
+                <div class="algign-middle" id="progress">
+                    <circle-progress value="100" min="0" max="100" class="m-auto" text-format="percent" id="progress"></circle-progress>
+                
+            </div>
+            <button id="add" class="btn btn-success w-75 m-auto my-2" data-bs-toggle="modal" data-bs-target="#nuevoGasto"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"><g fill="none" stroke-linejoin="round" stroke-width="4"><path fill="black" stroke="#000" d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"/><path stroke="#fff" stroke-linecap="round" d="M24 16V32"/><path stroke="#fff" stroke-linecap="round" d="M16 24L32 24"/></g></svg>
+            </button>
+            </div>
+           
+            <div class="col">
+            
+                <p ><span>Presupuesto</span><b id="totalpre">$0.0</b></p>
+                <p><span>Disponible</span><b id="totaldisponible">$0.0</b></p>
+                <p><span>Gastos</span><b id="totalgastos">$0.0</b></p>
+                <button class="btn btn-danger w-75 m-auto my-2"  onclick="reset()">RESET</button>
+             
+            </div>
+           </div>
+           </div>
+           </div>
+           <div class="card text-center w-50 m-auto mt-3 shadow p-2 ">
+            <div class="card-header">
+        <h2 class="mt-2">CATEGORIA </h2>
+       
+    <select name="Categoria"  class="form-control  m-75 m-auto" id="filtrarcate">
+        <option value="">--TODOS--</option>
+        <option value="comida">comida</option>
+        <option value="ahorro">ahorro</option>
+        <option value="casa">casa</option>
+        <option value="ocio">ocio</option>
+        <option value="salud">salud</option>
+        <option value="varios">varios</option>
+        <option value="suscripciones">suscripciones</option>
+    </select>
+            </div>
+            </div>
+            <div class="card text-center w-50 m-auto mt-3 shadow p-2 ">
+                <div class="card-header">
+            <h2 class="mt-2">CATEGORIA </h2>
+           
+    <div class="text-center" id="listasgastos">
+        <small>No hay cambios</small>
+    </div>
+                </div>
+                
+           
+                </div>
+               
+           </div>
+           </div>
+        
+  
+  <!-- Modal -->
+  <div class="modal fade" id="nuevoGasto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo gasto</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="guardar">
+                <div class="mb-3">
+                  <label for="Descripcion" class="col-form-label">Descripcion</label>
+                  <input type="text" class="form-control" id="Descripcion">
+                </div>
+                <div class="mb-3">
+                  <label for="GASTOS" class="col-form-label">Gastos</label>
+                  <input class="form-control" id="Gastos"></input>
+                </div>
+                <div class="mb-3">
+                    <label for="Categoria" class="col-form-label">Categoria</label>
+                    <select name="Categoria"  class="form-control  m-75 m-auto" id="cate2">
+                        <option value="todos">--TODOS--</option>
+                        <option value="comida">comida</option>
+                        <option value="ahorro">ahorro</option>
+                        <option value="casa">casa</option>
+                        <option value="ocio">ocio</option>
+                        <option value="salud">salud</option>
+                        <option value="varios">varios</option>
+                        <option value="suscripciones">suscripciones</option>
+                    </select>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="guardar" onclick="guardarGastos();">Guardar</button>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+
+  <!-- Modal Editar -->
+  <div class="modal fade" id="Editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar gasto</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="formEditar" >
+                <div class="mb-3">
+                    <input type="hidden" name="" id="gastoIndex">
+                </div>
+                <div class="mb-3">
+                  <label for="Descripcion" class="col-form-label">Descripcion</label>
+                  <input type="text" class="form-control" id="Descripcionedit">
+                </div>
+                <div class="mb-3">
+                  <label for="GASTOS" class="col-form-label">Gastos</label>
+                  <input class="form-control" id="Gastosedit"></input>
+                </div>
+                <div class="mb-3">
+                    <label for="Categoria" class="col-form-label">Categoria</label>
+                    <select name="Categoria"  class="form-control  m-75 m-auto" id="cate2edit">
+                        <option value="todos">--TODOS--</option>
+                        <option value="comida">comida</option>
+                        <option value="ahorro">ahorro</option>
+                        <option value="casa">casa</option>
+                        <option value="ocio">ocio</option>
+                        <option value="salud">salud</option>
+                        <option value="varios">varios</option>
+                        <option value="suscripciones">suscripciones</option>
+                    </select>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="editar" onclick="editar()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/sweetalert2.all.min.js"></script>
+      <script src="js/circle-progress.min.js" type="module"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.js"></script>
+</body>
+</html>
